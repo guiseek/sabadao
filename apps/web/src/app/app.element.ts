@@ -1,5 +1,8 @@
 import { Connected, web } from '@sabadao/shared/ui-web';
 import './app.element.scss';
+import { ProductFacade } from '@sabadao/shared/data-access';
+
+const facade = new ProductFacade()
 
 @web({ selector: 'app-root' })
 export class AppElement
@@ -13,8 +16,10 @@ export class AppElement
   styles = `:host { display: flex; background: #f5f5f5; }`;
   template = `<h1>Web Component</h1>`;
 
-  connected(): void {
-    console.log('oie')
+  connected() {
+    facade.loading$.subscribe(console.log)
+    facade.products$.subscribe(console.log)
+    facade.loadProducts()
   }
 
   // attrChanged({ name, next }: AttrChangedValue): void {

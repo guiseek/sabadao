@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@sabadao/shared/data-access": ["libs/shared/data-access/src/index.ts"],
       "@sabadao/shared/ui-web": ["libs/shared/ui-web/src/index.ts"]
     }
   },
