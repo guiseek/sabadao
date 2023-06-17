@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@sabadao/product/data-access": ["libs/product/data-access/src/index.ts"],
       "@sabadao/product/feature-shopping": [
         "libs/product/feature-shopping/src/index.ts"
       ],

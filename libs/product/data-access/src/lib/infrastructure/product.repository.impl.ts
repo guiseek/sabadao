@@ -1,7 +1,7 @@
 import { Observable, map } from 'rxjs';
-import { Product } from '../entities';
+import { Product } from '@sabadao/shared/data-access';
 import { ProductRepository } from './product.repository';
-import { HttpService } from './http.service';
+import { HttpService } from '@sabadao/shared/data-access';
 import { ProductResponse } from '../dtos';
 
 export class ProductRepositoryImpl implements ProductRepository {

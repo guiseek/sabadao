@@ -5,15 +5,20 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
+import { HttpService } from '@sabadao/shared/data-access';
+
 import {
-  HttpService,
-  HttpServiceImpl,
   ProductFacade,
   ProductRepository,
   ProductRepositoryImpl,
-} from '@sabadao/shared/data-access';
+} from '@sabadao/product/data-access';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule,
+} from '@angular/common/http';
 import { AppInterceptor } from './app.interceptor';
 import { AppProgressService } from './app-progress.service';
 

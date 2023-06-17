@@ -1,6 +1,6 @@
-import { Store } from '../base';
+import { Store } from '@sabadao/shared/data-access';
 import { Product } from '../entities';
-import { ProductRepository } from '../infrastructure';
+import { ProductRepository } from '../infrastructure/product.repository';
 
 interface ProductState {
   products: Product[];
