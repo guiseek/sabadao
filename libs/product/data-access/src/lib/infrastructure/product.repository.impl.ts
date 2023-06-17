@@ -1,5 +1,5 @@
 import { Observable, map } from 'rxjs';
-import { Product } from '@sabadao/shared/data-access';
+import { Product } from '../entities';
 import { ProductRepository } from './product.repository';
 import { HttpService } from '@sabadao/shared/data-access';
 import { ProductResponse } from '../dtos';

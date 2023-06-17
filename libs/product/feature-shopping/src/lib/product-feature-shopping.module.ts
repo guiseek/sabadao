@@ -19,11 +19,8 @@ import { ProductDialog } from './components/product/product.dialog';
     MatDialogModule,
     MatButtonModule,
     MatIconModule,
-    RouterModule.forChild(productFeatureShoppingRoutes)
+    RouterModule.forChild(productFeatureShoppingRoutes),
   ],
-  declarations: [
-    ProductFeatureShoppingContainer,
-    ProductDialog
-  ],
+  declarations: [ProductFeatureShoppingContainer, ProductDialog],
 })
 export class ProductFeatureShoppingModule {}

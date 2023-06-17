@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Product, ProductFacade } from '@sabadao/shared/data-access';
+import { Product, ProductFacade } from '@sabadao/product/data-access';
 import { ProductDialog } from './components/product/product.dialog';
 
 @Component({
@@ -19,6 +19,6 @@ export class ProductFeatureShoppingContainer {
   }
 
   openProduct(data: Product) {
-    const ref = this.dialog.open(ProductDialog, { data });
+    this.dialog.open(ProductDialog, { data });
   }
 }

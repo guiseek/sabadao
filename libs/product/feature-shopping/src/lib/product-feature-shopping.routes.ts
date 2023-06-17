@@ -4,6 +4,6 @@ import { ProductFeatureShoppingContainer } from './product-feature-shopping.cont
 export const productFeatureShoppingRoutes: Route[] = [
   {
     path: '',
-    component: ProductFeatureShoppingContainer
-  }
+    component: ProductFeatureShoppingContainer,
+  },
 ];
