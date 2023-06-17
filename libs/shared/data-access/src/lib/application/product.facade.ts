@@ -1,20 +1,22 @@
 import { Store } from '../base';
-import { ProductResponse } from '../dtos';
 import { Product } from '../entities';
-import { HttpService } from '../infrastructure';
+import { ProductRepository } from '../infrastructure';
 
 interface ProductState {
   products: Product[];
+  product: Product | null;
   loading: boolean;
 }
 
 export class ProductFacade extends Store<ProductState> {
   loading$ = this.select((state) => state.loading);
   products$ = this.select((state) => state.products);
+  product$ = this.select((state) => state.product);
 
-  constructor(private http: HttpService) {
+  constructor(private repository: ProductRepository) {
     super({
       loading: false,
+      product: null,
       products: [],
     });
   }
@@ -22,8 +24,16 @@ export class ProductFacade extends Store<ProductState> {
   loadProducts() {
     this.setState({ loading: true });
 
-    this.http
-      .get<ProductResponse>(`https://dummyjson.com/products?limit=10&skip=0`)
-      .subscribe(({ products }) => this.setState({ products }));
+    this.repository
+      .findAll()
+      .subscribe((products) => this.setState({ products, loading: false }));
+  }
+
+  loadProduct(id: number) {
+    this.setState({ loading: true });
+
+    this.repository
+      .findOne(id)
+      .subscribe((product) => this.setState({ product, loading: false }));
   }
 }

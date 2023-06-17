@@ -1,10 +1,18 @@
 <h1>Component</h1>
+
+<pre>{{ facade.loading$ | async }}</pre>
+<pre>{{ facade.product$ | async | json }}</pre>
 <table>
   <tbody>
     <tr *ngFor="let product of facade.products$ | async">
-      <td>{{product.id}}</td>
-      <td>{{product.title}}</td>
-      <td>{{product.description}}</td>
+      <td>{{ product.id }}</td>
+      <td>{{ product.title }}</td>
+      <td>{{ product.description }}</td>
+      <td>
+        <button type="button" (click)="facade.loadProduct(product.id)">
+          Carregar
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>

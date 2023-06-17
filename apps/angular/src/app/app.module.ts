@@ -7,6 +7,8 @@ import {
   HttpService,
   HttpServiceImpl,
   ProductFacade,
+  ProductRepository,
+  ProductRepositoryImpl,
 } from '@sabadao/shared/data-access';
 @NgModule({
   declarations: [AppComponent],
@@ -20,8 +22,13 @@ import {
       useClass: HttpServiceImpl,
     },
     {
-      provide: ProductFacade,
+      provide: ProductRepository,
+      useClass: ProductRepositoryImpl,
       deps: [HttpService],
+    },
+    {
+      provide: ProductFacade,
+      deps: [ProductRepository],
     },
   ],
   bootstrap: [AppComponent],
