@@ -3,13 +3,27 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
+import {
+  HttpService,
+  HttpServiceImpl,
+  ProductFacade,
+} from '@sabadao/shared/data-access';
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HttpService,
+      useClass: HttpServiceImpl,
+    },
+    {
+      provide: ProductFacade,
+      deps: [HttpService],
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

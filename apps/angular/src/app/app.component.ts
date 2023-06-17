@@ -9,9 +9,7 @@ import { ProductFacade } from '@sabadao/shared/data-access';
 export class AppComponent {
   title = 'angular';
 
-  facade = new ProductFacade();
-
-  constructor() {
+  constructor(protected readonly facade: ProductFacade) {
     this.facade.loadProducts();
   }
 }
