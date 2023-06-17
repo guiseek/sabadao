@@ -1,1 +1,1 @@
-export * from './lib/shared-ui-web';
+export * from './public-api';

@@ -1,9 +1,10 @@
+import { Connected, web } from '@sabadao/shared/ui-web';
 import './app.element.scss';
 
 @web({ selector: 'app-root' })
 export class AppElement
   extends HTMLElement
-  implements AfterConnected, AfterQueued, AttrChanged, Disconnected, Connected
+  implements Connected
 {
   static observedAttributes = ['version'];
 
@@ -13,22 +14,22 @@ export class AppElement
   template = `<h1>Web Component</h1>`;
 
   connected(): void {
-    throw new Error('Method not implemented.');
+    console.log('oie')
   }
 
-  attrChanged({ name, next }: AttrChangedValue): void {
-    console.log(name, next);
-  }
+  // attrChanged({ name, next }: AttrChangedValue): void {
+  //   console.log(name, next);
+  // }
 
-  afterConnected() {
-    console.log('afterConnected:', this.shadowRoot?.innerHTML);
-  }
+  // afterConnected() {
+  //   console.log('afterConnected:', this.shadowRoot?.innerHTML);
+  // }
 
-  afterQueued() {
-    console.log('afterQueued', this.shadowRoot?.innerHTML);
-  }
+  // afterQueued() {
+  //   console.log('afterQueued', this.shadowRoot?.innerHTML);
+  // }
 
-  disconnected() {
-    console.log('BYE BYE');
-  }
+  // disconnected() {
+  //   console.log('BYE BYE');
+  // }
 }
