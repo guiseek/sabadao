@@ -6,4 +6,4 @@ export type {
   AfterConnected,
   AttrChangedValue,
 } from './lib/interfaces';
-export { web } from './lib/decorators/web';
+export { web, child } from './lib/decorators';

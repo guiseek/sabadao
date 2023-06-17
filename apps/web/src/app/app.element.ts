@@ -1,25 +1,49 @@
-import { Connected, web } from '@sabadao/shared/ui-web';
+import { AfterConnected, Connected, child, web } from '@sabadao/shared/ui-web';
 import './app.element.scss';
 import { ProductFacade } from '@sabadao/shared/data-access';
 
-const facade = new ProductFacade()
+const facade = new ProductFacade();
 
 @web({ selector: 'app-root' })
 export class AppElement
   extends HTMLElement
-  implements Connected
+  implements Connected, AfterConnected
 {
   static observedAttributes = ['version'];
 
   version = '';
 
-  styles = `:host { display: flex; background: #f5f5f5; }`;
-  template = `<h1>Web Component</h1>`;
+  styles = `:host { display: flex; flex-direction: column; background: #f5f5f5; }`;
+  template = `
+    <h1>Web Component</h1>
+    <table>
+      <tbody>
+      </tbody>
+    </table>
+  `;
+
+  @child('tbody')
+  tbody!: HTMLTableSectionElement;
 
   connected() {
-    facade.loading$.subscribe(console.log)
-    facade.products$.subscribe(console.log)
-    facade.loadProducts()
+    facade.loading$.subscribe(console.log);
+    facade.loadProducts();
+  }
+
+  afterConnected(): void {
+    console.log(`this.tbody: `, this.tbody);
+
+    facade.products$.subscribe((products) => {
+      products.map((product, i) => {
+        const row = this.tbody.insertRow(i);
+        Object.values(product)
+          .slice(0, 3)
+          .forEach((prop, p) => {
+            const cell = row.insertCell(p);
+            cell.innerText = prop;
+          });
+      });
+    });
   }
 
   // attrChanged({ name, next }: AttrChangedValue): void {

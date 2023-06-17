@@ -33,8 +33,6 @@ export function web(options: WebOptions) {
         this.connected.call(this);
       }
 
-      cycle.connected.call(this);
-
       const shadow = this.attachShadow({ mode: 'open' });
       const element = document.createElement('template');
       element.innerHTML = template;
@@ -47,6 +45,8 @@ export function web(options: WebOptions) {
       }
 
       shadow.appendChild(html);
+
+      cycle.connected.call(this);
 
       if (this.afterConnected) {
         this.afterConnected.call(this);
