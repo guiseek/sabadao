@@ -1,7 +1,5 @@
-import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { ProductFacade, Product } from '@sabadao/shared/data-access';
-import { ProductDialog } from './product/product.dialog';
+import { Component, inject } from '@angular/core';
+import { AppProgressService } from './app-progress.service';
 
 @Component({
   selector: 'sabadao-root',
@@ -11,16 +9,5 @@ import { ProductDialog } from './product/product.dialog';
 export class AppComponent {
   title = 'angular';
 
-  displayedColumns = ['id', 'title', 'description', 'actions']
-
-  constructor(
-    protected readonly facade: ProductFacade,
-    private dialog: MatDialog
-  ) {
-    this.facade.loadProducts();
-  }
-
-  openProduct(data: Product) {
-    const ref = this.dialog.open(ProductDialog, { data })
-  }
+  progress = inject(AppProgressService)
 }

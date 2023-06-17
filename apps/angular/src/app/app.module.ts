@@ -2,11 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatTableModule } from '@angular/material/table';
-import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
 import {
@@ -17,24 +13,32 @@ import {
   ProductRepositoryImpl,
 } from '@sabadao/shared/data-access';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ProductDialog } from './product/product.dialog';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { AppInterceptor } from './app.interceptor';
+import { AppProgressService } from './app-progress.service';
+
 @NgModule({
-  declarations: [AppComponent, ProductDialog],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    MatTableModule,
-    MatDialogModule,
     MatProgressBarModule,
+    HttpClientModule,
     MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
     BrowserAnimationsModule,
   ],
   providers: [
     {
+      provide: AppProgressService,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AppInterceptor,
+      multi: true,
+    },
+    {
       provide: HttpService,
-      useClass: HttpServiceImpl,
+      useClass: HttpClient,
     },
     {
       provide: ProductRepository,
